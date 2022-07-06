@@ -1,6 +1,7 @@
 package main
 
 import (
+	pubsub "github.com/akpor-kofi/blockchain/app"
 	"github.com/akpor-kofi/blockchain/routes"
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
@@ -20,11 +21,9 @@ func main() {
 	api.Route("/", routes.BlockRouter)
 	api.Route("/", routes.TransactRouter)
 
-	defer app.ClosePubsub(app.BlockSub)
-
 	Wg.Add(1)
 
-	go app.ConsumeEvents()
+	go pubsub.ConsumeEvents()
 
 	addr := getAddressPort()
 
