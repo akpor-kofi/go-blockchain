@@ -27,6 +27,7 @@ func main() {
 	go pubsub.ConsumeEvents()
 
 	addr := getAddressPort()
+	fmt.Println(addr, "here")
 
 	err := app.Listen(addr)
 	if err != nil {
@@ -52,7 +53,6 @@ func getAddressPort() string {
 	var port int
 
 	herokuPort := os.Getenv("PORT")
-	fmt.Println(herokuPort, "here")
 	if herokuPort != "" {
 		return ":" + strconv.FormatInt(int64(port), 10)
 	}
