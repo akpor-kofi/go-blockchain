@@ -54,7 +54,7 @@ func getAddressPort() string {
 
 	herokuPort := os.Getenv("PORT")
 	if herokuPort != "" {
-		return ":" + strconv.FormatInt(int64(port), 10)
+		return ":" + herokuPort
 	}
 
 	genPeerPort, err := getEnvVariable("GENERATE_PEER_PORT")
