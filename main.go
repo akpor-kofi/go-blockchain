@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	pubsub "github.com/akpor-kofi/blockchain/app"
 	"github.com/akpor-kofi/blockchain/routes"
 	"github.com/gofiber/fiber/v2"
@@ -51,6 +52,7 @@ func getAddressPort() string {
 	var port int
 
 	herokuPort := os.Getenv("PORT")
+	fmt.Println(herokuPort, "here")
 	if herokuPort != "" {
 		return ":" + strconv.FormatInt(int64(port), 10)
 	}
