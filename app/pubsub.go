@@ -22,13 +22,18 @@ var wg = sync.WaitGroup{}
 var ctx = context.TODO()
 
 func init() {
-	Rdb = redis.NewClient(&redis.Options{
-		//Addr:        "localhost:6379",
-		Addr:        "redis://h:p8850c8a466c98e2df1f8a910147e24ca286977e57aa6e41b82f2d96ff51d604c@ec2-23-20-19-160.compute-1.amazonaws.com:31469\n",
-		Password:    "",
-		DB:          0,
-		ReadTimeout: 24 * time.Hour,
-	})
+	opts, err := redis.ParseURL("redis://:p8850c8a466c98e2df1f8a910147e24ca286977e57aa6e41b82f2d96ff51d604c@ec2-23-20-19-160.compute-1.amazonaws.com:31469")
+	if err != nil {
+		log.Fatal(err)
+	}
+	//Rdb = redis.NewClient(&redis.Options{
+	//	//Addr:        "localhost:6379",
+	//	Addr:        ,
+	//	Password:    "",
+	//	DB:          0,
+	//	ReadTimeout: 24 * time.Hour,
+	//})
+	Rdb = redis.NewClient(opts)
 
 	//chain := getCurrentChain()
 	//BC.ReplaceChain(*chain)
